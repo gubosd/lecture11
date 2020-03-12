@@ -38,4 +38,20 @@ main() {
 		printf("%03d> %.1f %.1f %.1f %.1f %s\n",
 			row+1, data[row][0], data[row][1], data[row][2], data[row][3], name[row]);
 	}
+	
+	
+	/*****************************************
+	첫번째 꽃과 나머지 꽃들간의 거리를 측정 
+	*****************************************/
+	int i, flower;
+	float distance[150] = {0,};
+	
+	for(flower=0; flower<150; flower++) {
+		for(i=0;i<4;i++)
+			distance[flower] += pow(data[0][i] - data[flower][i], 2);
+		distance[flower] = sqrt(distance[flower]);
+	}
+	
+	for(flower=0; flower<150; flower++)
+		printf("%03d 번째 꽃과의 거리는 %.2f 입니다\n", flower+1, distance[flower]);
 }
