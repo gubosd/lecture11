@@ -1,0 +1,69 @@
+https://www.techspot.com/downloads/189-vmware-workstation-for-windows.html
+VMware-workstation-full-15.5.1-15018445
+
+mirror.kakao.com/ubuntu-releases
+ubuntu-18.04.4-desktop-amd64.iso
+가상머신 위치 => C:\Users\KOSTA\Documents\Virtual Machines\Ubuntu 18.04.4 64-bit
+
+sudo apt install net-tools
+=> ifconfig
+ifconfig, route -n
+192.168.70.128, 255.255.255.0, 192.168.70.2(G/W), 192.168.70.1(PC)
+
+=== gcc 설치
+sudo apt install build-essential
+sudo apt-get install manpages-dev
+gcc --version
+
+=== ssh 설치
+https://blog.naver.com/higasijoe/221711750861 참고
+apt-get update
+dpkg -l | grep ssh (설치되어 있는지 확인)
+apt-get install ssh
+dpkg -l | grep ssh
+관련파일 -> /usr/sbin/sshd, /etc/init.d/ssh, /etc/ssh/
+service ssh restart
+ssh localhost
+윈도우 테라텀 > ssh 192.168.70.128
+
+=== sftp 접속 (ssh 사용)
+윈도우에 파일질라 클라이언트 설치
+192.168.70.128, 22번 포트, gubos 아이디로 접속
+
+=== mysql 설치
+https://hiseon.me/linux/ubuntu/ubuntu-mysql-install/
+sudo apt install -y mysql-server
+sudo mysql_secure_installation => 각종 설정
+sudo /etc/init.d/mysql restart
+sudo mysql -u root -p
+create user 'gubos'@'localhost' identified by 'rye';
+grant all privileges on *.* to 'gubos'@'localhost';
+flush privileges;
+create database test;
+create table test.test1 (name char(64), age int);
+use test;
+* 'exboy'@'%' 로 사용자 만듦
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+  => #bind-address = 127.0.0.1 으로 막음
+sudo /etc/init.d/mysql restart
+윈도우에서 워크벤치 설치후 exboy 로 접속
+
+=== 아나콘다 설치
+https://blog.naver.com/novan21/221718408840 블로그 참조
+wget https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh 다운로드
+	=> 텐서플로 설치를 위해 파이썬 3.6 버전을 다운로드함
+bash Anaconda3-5.2.0-Linux-x86_64.sh
+conda -V => conda 4.5.4
+python 3.6.5
+jupyter notebook --generate-config
+vi ~/.jupyter/jupyter_notebook_config.py
+	c.NotebookApp.ip = '0.0.0.0'
+	c.NotebookApp.notebook_dir = '/home/gubos'
+jupyter notebook --config=/home/hans/.jupyter/jupyter_notebook_config.py
+파이어폭스 브라우저 뜸 (localhost:8888)
+
+=== 텐서플로 설치
+pip install --upgrade pip
+pip install msgpack
+pip install tensorflow==1.12.0
+pip install keras==2.2.4 (버전 매핑 : https://docs.floydhub.com/guides/environments/)
