@@ -36,7 +36,7 @@ sudo apt install -y mysql-server
 sudo mysql_secure_installation => 각종 설정
 sudo /etc/init.d/mysql restart
 sudo mysql -u root -p
-create user 'gubos'@'localhost' identified by 'rye';
+create user 'gubos'@'localhost' identified by 'kkk';
 grant all privileges on *.* to 'gubos'@'localhost';
 flush privileges;
 create database test;
