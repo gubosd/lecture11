@@ -1,0 +1,28 @@
+# 방법1
+f = open('iris.csv')
+
+header = f.readline().strip().split(',')
+
+iris = []
+
+for line in f:
+    l = line.strip().split(',')
+    l2 = [float(l[0]), float(l[1]), float(l[2]), float(l[3]), l[4]]
+    iris.append(l2)
+    
+f.close()
+
+# 방법2
+f = open('iris.csv')
+
+header = f.readline().strip().split(',')
+
+iris = []
+
+for line in f:
+    l = line.strip().split(',')
+    for i in range(4):
+        l[i] = float(l[i])
+    iris.append(l) # iris += [l]
+    
+f.close()
