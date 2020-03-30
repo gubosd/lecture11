@@ -1,0 +1,26 @@
+1. Numpy arange() 함수를 사용하여 아래를 만드시오.
+  - np.arange(100,109).reshape(3,3)
+
+[[100,101,102],
+ [103,104,105],
+ [106,107,108]]
+
+2. 위의 어레이에서 첫번째 줄과 마지막 줄을 추출하시오.
+ - a[[0,2]]
+
+3. np.loadtxt() 를 이용하여 아이리스 데이터를 읽어오시오.
+ - np.loadtxt('iris.csv', skiprows=1, delimiter=',', usecols=[0,1,2,3])
+
+4. 아이리스에서 네번째 속성의 값이 5보다 작은 샘플들을 뽑아내시오.
+ - # select * from iris where col4<5
+ - iris[ iris[:,3]<5 ]
+
+5. 아이리스 4가지 속성의 평균값을 구하시오. (axis 속성 이용)
+ - iris.mean(axis=1)
+
+6. 아이리스 세번째 속성의 값을 기준으로 정렬하는 방법을 고민해보시오.
+ - 방법1) 0부터 시작하는 인덱스를 만들어 활용한다
+ - 방법2) sorted(key=...) 함수 사용
+ - np.array(sorted(iris, key=lambda l: l[2]))
+ - a = [i[0] for i in sorted(list(enumerate(iris[:,2])), key=lambda t: t[1])]
+   iris[a]
