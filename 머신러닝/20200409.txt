@@ -1,0 +1,45 @@
+### k=1 소스
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+dir(iris)
+
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+col1 = 3 # petal width
+col2 = 1 # sepal width
+
+X = iris.data[:,[col1, col2]] # 속성 2개만 골라냄
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+X_train.shape, X_test.shape, y_train.shape, y_test.shape
+
+
+plt.scatter(X_train[:,0], X_train[:,1], c=y_train)
+plt.xlabel(iris.feature_names[col1])
+plt.ylabel(iris.feature_names[col2])
+plt.colorbar()
+
+
+odel = KNeighborsClassifier(1) # n_neighbors=1
+model.fit(X_train, y_train)
+
+score = model.score(X_test, y_test)
+display(score)
+
+import mglearn
+
+plt.figure(figsize=[10,8])
+mglearn.plots.plot_2d_classification(model,
+	X_train, fill=True, eps=0.5, alpha=0.4)
+
+mglearn.discrete_scatter(X_train[:,0], X_train[:,1], y_train)
+#mglearn.discrete_scatter(X_test[:,0], X_test[:,1], y_test)
+
