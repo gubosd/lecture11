@@ -28,7 +28,7 @@ plt.ylabel(iris.feature_names[col2])
 plt.colorbar()
 
 
-odel = KNeighborsClassifier(1) # n_neighbors=1
+model = KNeighborsClassifier(1) # n_neighbors=1
 model.fit(X_train, y_train)
 
 score = model.score(X_test, y_test)
