@@ -1,0 +1,42 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_digits
+
+mnist = load_digits()
+dir(mnist)
+
+plt.figure(figsize=[8,8])
+plt.subplots_adjust(hspace=1)
+for i in range(100):
+    plt.subplot(10,10,i+1)
+    plt.imshow(mnist.images[i], cmap='gray_r')
+    plt.axis('off')
+    plt.title(mnist.target[i])
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+X_train, X_test, y_train, y_test = train_test_split(mnist.data, mnist.target)
+model = LogisticRegression()
+model.fit(X_train, y_train)
+model.score(X_test, y_test)
+
+for i in range(len(idx)):
+    plt.subplot(np.ceil(len(idx)/5),5,i+1)
+    plt.imshow(X_test[idx[i]].reshape(8,8), cmap='gray_r')
+    plt.title('%d/%d' % (y_test[idx[i]],pred_y[idx[i]]))
+    plt.axis('off')
+    
+result = np.zeros([10,10])
+for i in range(10):
+    #a = np.bincount(pred_y[y_test==i])
+    #result[i,:len(a)] = a
+    result[i] = np.bincount(pred_y[y_test==i], minlength=10)
+    
+result
+
+plt.imshow(result, vmin=0, vmax=6, cmap='gray_r')
+plt.colorbar()
+
